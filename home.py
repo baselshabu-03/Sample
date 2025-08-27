@@ -11,9 +11,15 @@ def display(request):
 def show(request):
     return Response("Welcome to Sector - 1111")
 
+@view_config(route_name='temp1', renderer='template/first.jinja2')
+def template1(request):
+    return {}
+
 c = Configurator()
+c.include('pyramid_jinja2')
 c.add_route('first','/')
 c.add_route('second', '/sec')
+c.add_route('temp1','t1')
 
 c.scan()
 app = c.make_wsgi_app()
