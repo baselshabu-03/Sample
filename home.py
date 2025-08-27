@@ -17,7 +17,9 @@ def template1(request):
 
 @view_config(route_name='temp2', renderer='template/second.jinja2')
 def template2(request):
-    return {}
+    if request.method == "POST":
+        x = request.POST['n1']
+        return {'a': x}
 
 c = Configurator()
 c.include('pyramid_jinja2')
